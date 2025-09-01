@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: sua_senha_aqui
+      POSTGRES_DB: notebook
+    ports:
+      - "5433:5432"   # host:container
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: sua_senha_pgadmin
+    ports:
+      - "8080:80"     # pgAdmin acessível em localhost:8080
+    depends_on:
+      - db
+
+volumes:
+  pgdata:
