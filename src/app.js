@@ -4,6 +4,10 @@ import { cenaRouter } from './controllers/cenaController.js';
 import { comodoRouter } from './controllers/comodoController.js';
 import { dispositivoRouter } from './controllers/dispositivoController.js';
 import { usuarioRouter } from './controllers/usuarioController.js';
+import cors from 'cors'; // Importe a biblioteca cors
+
+// Habilita o CORS para todas as rotas e origens
+app.use(cors());
 
 const app = express();
 const PORT = process.env.PORT || 3000;
